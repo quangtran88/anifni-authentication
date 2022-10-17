@@ -1,12 +1,32 @@
 package ports
 
-import "github.com/quangtran88/anifni-authentication/core/domain"
+import (
+	"context"
+	"github.com/quangtran88/anifni-authentication/core/domain"
+	"time"
+)
 
 type OTPRepository interface {
-	SaveEmailOTP(otp domain.EmailOTP) error
-	GetEmailOTP(email string) (string, error)
+	SaveEmailOTP(ctx context.Context, otp domain.EmailOTP) error
+	GetEmailOTP(ctx context.Context, email string) (domain.EmailOTP, error)
+	DeleteEmailOTP(ctx context.Context, email string) error
 }
 
 type NotificationService interface {
 	SendOTPEmail(otp domain.EmailOTP) error
+}
+
+type RandomGenerator interface {
+	GetDigit(size int) string
+}
+
+type HashGenerator interface {
+	HashPassword(password string) (string, error)
+	CheckPasswordHash(password, hash string) bool
+}
+
+type RedisService interface {
+	Set(ctx context.Context, key string, value string, exp time.Duration) error
+	Get(ctx context.Context, key string) (string, error)
+	Del(ctx context.Context, key string) error
 }
