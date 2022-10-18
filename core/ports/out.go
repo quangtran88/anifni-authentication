@@ -13,7 +13,7 @@ type OTPRepository interface {
 }
 
 type NotificationService interface {
-	SendOTPEmail(otp domain.EmailOTP) error
+	SendOTPEmail(ctx context.Context, otp domain.EmailOTP) error
 }
 
 type RandomGenerator interface {
@@ -29,4 +29,9 @@ type RedisService interface {
 	Set(ctx context.Context, key string, value string, exp time.Duration) error
 	Get(ctx context.Context, key string) (string, error)
 	Del(ctx context.Context, key string) error
+}
+
+type KafkaProducer interface {
+	Produce(ctx context.Context, topic string, key string, value string) error
+	ProduceMultiple(ctx context.Context, topic string, messages []KafkaMessage) error
 }

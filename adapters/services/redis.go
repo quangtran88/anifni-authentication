@@ -1,4 +1,4 @@
-package serviceAdatpers
+package serviceAdapters
 
 import (
 	"context"

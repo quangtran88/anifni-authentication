@@ -34,7 +34,7 @@ func (srv OTPService) SendEmailOTP(ctx context.Context, email string) error {
 		Code:  hashedCode,
 	}
 
-	err = srv.notiSrv.SendOTPEmail(otp)
+	err = srv.notiSrv.SendOTPEmail(ctx, otp)
 	if err != nil {
 		return err
 	}
