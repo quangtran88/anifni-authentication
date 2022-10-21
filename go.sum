@@ -49,8 +49,12 @@ github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZN
 github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4/go.mod h1:xMI15A0UPsDsEKsMN9yxemIoYk6Tm2C1GtYGdfGttqA=
 github.com/quangtran88/anifni-base v1.0.2 h1:ZfWcXfd+c2l7Rn4vRzL4WTZcLArRMaesz8FesA2DjGM=
 github.com/quangtran88/anifni-base v1.0.2/go.mod h1:NlMh+QwgiSc17EIzSNMqI5awj9qQFqpTVe+w6v+Z0B8=
+github.com/quangtran88/anifni-base v1.0.3 h1:NGD5JttmWK2KYAMHUWiWqnGPJI3i2EUcDAiEmY5tmfQ=
+github.com/quangtran88/anifni-base v1.0.3/go.mod h1:NlMh+QwgiSc17EIzSNMqI5awj9qQFqpTVe+w6v+Z0B8=
 github.com/quangtran88/anifni-grpc v1.0.3 h1:WztlFlKT/JzT5Yx5VppbiPgfUdNR8yf4FB8slZ2wlwA=
 github.com/quangtran88/anifni-grpc v1.0.3/go.mod h1:MdG+InAzgp+tyg8Z6ItUxw55+o2xogsZHKDtrJruHPE=
+github.com/quangtran88/anifni-grpc v1.2.1 h1:fdNdGnObuHYyE24adenf46GdvbADoLB0LOOtbdJF/F0=
+github.com/quangtran88/anifni-grpc v1.2.1/go.mod h1:MdG+InAzgp+tyg8Z6ItUxw55+o2xogsZHKDtrJruHPE=
 github.com/segmentio/kafka-go v0.4.35 h1:TAsQ7q1SjS39PcFvU0zDJhCuVAxHomy7xOAfbdSuhzs=
 github.com/segmentio/kafka-go v0.4.35/go.mod h1:GAjxBQJdQMB5zfNA21AhpaqOB2Mu+w3De4ni3Gbm8y0=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=

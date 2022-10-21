@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/joho/godotenv"
 	grpcHandler "github.com/quangtran88/anifni-authentication/adapters/handlers/grpc"
+	baseConstants "github.com/quangtran88/anifni-base/libs/constants"
+	baseUtils "github.com/quangtran88/anifni-base/libs/utils"
 	"google.golang.org/grpc"
 	"log"
 	"net"
@@ -15,8 +17,8 @@ func main() {
 		log.Println(err)
 		log.Println("Error loading .env file")
 	}
-
-	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", 6000))
+	env := baseUtils.GetEnvManager()
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%s", env.GetEnv(baseConstants.GRPCPortEnvKey)))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}

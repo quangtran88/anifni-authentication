@@ -15,11 +15,17 @@ func main() {
 	}
 
 	p := serviceAdapters.NewKafkaProducer()
-	err = p.Produce(context.Background(), "test", "foo", "bar")
+	err = p.ProduceMultiple(context.Background(), "test", []ports.KafkaMessage{
+		{Key: "1", Value: "a"},
+		{Key: "2", Value: "b"},
+		{Key: "3", Value: "c"},
+		{Key: "4", Value: "d"},
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = p.ProduceMultiple(context.Background(), "test", []ports.KafkaMessage{
+
+	err = p.ProduceMultiple(context.Background(), "test1", []ports.KafkaMessage{
 		{Key: "1", Value: "a"},
 		{Key: "2", Value: "b"},
 		{Key: "3", Value: "c"},
