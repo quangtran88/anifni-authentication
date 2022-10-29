@@ -30,8 +30,3 @@ type RedisService interface {
 	Get(ctx context.Context, key string) (string, error)
 	Del(ctx context.Context, key string) error
 }
-
-type KafkaProducer interface {
-	Produce(ctx context.Context, topic string, key string, value string) error
-	ProduceMultiple(ctx context.Context, topic string, messages []KafkaMessage) error
-}

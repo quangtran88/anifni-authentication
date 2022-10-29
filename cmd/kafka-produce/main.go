@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"github.com/joho/godotenv"
-	"github.com/quangtran88/anifni-authentication/adapters/services"
-	"github.com/quangtran88/anifni-authentication/core/ports"
+	basePorts "github.com/quangtran88/anifni-base/libs/ports"
+	baseServices "github.com/quangtran88/anifni-base/libs/services"
 	"log"
 )
 
@@ -14,8 +14,8 @@ func main() {
 		log.Fatal("Can not load env", err)
 	}
 
-	p := serviceAdapters.NewKafkaProducer()
-	err = p.ProduceMultiple(context.Background(), "test", []ports.KafkaMessage{
+	p := baseServices.NewKafkaProducer()
+	err = p.ProduceMultiple(context.Background(), "test", []basePorts.EventMessage{
 		{Key: "1", Value: "a"},
 		{Key: "2", Value: "b"},
 		{Key: "3", Value: "c"},
@@ -25,7 +25,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = p.ProduceMultiple(context.Background(), "test1", []ports.KafkaMessage{
+	err = p.ProduceMultiple(context.Background(), "test1", []basePorts.EventMessage{
 		{Key: "1", Value: "a"},
 		{Key: "2", Value: "b"},
 		{Key: "3", Value: "c"},

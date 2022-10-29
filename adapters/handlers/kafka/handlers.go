@@ -1,27 +1,28 @@
-package grpcHandler
+package kafkaHandlers
 
 import (
 	"github.com/quangtran88/anifni-authentication/adapters/repositories"
 	serviceAdapters "github.com/quangtran88/anifni-authentication/adapters/services"
 	"github.com/quangtran88/anifni-authentication/core/services"
+	"github.com/quangtran88/anifni-base/libs/event"
 	baseServices "github.com/quangtran88/anifni-base/libs/services"
 	baseUtils "github.com/quangtran88/anifni-base/libs/utils"
-	authGRPC "github.com/quangtran88/anifni-grpc/authentication"
-	"google.golang.org/grpc"
 )
 
-func InitGRPCServices(s *grpc.Server) {
+func InitKafkaHandlers() {
 	redisService := serviceAdapters.NewRedisService()
 	kafkaProducer := baseServices.NewKafkaProducer()
+	notiService := serviceAdapters.NewNotificationService(kafkaProducer)
 
 	otpRepo := repositories.NewOTPRepository(redisService)
-
-	notiService := serviceAdapters.NewNotificationService(kafkaProducer)
 
 	random := baseUtils.GetRandomGenerator()
 	hash := baseUtils.GetHashGenerator()
 
-	otpService := services.NewOTPService(otpRepo, notiService, random, hash)
+	otpSrv := services.NewOTPService(otpRepo, notiService, random, hash)
+	otpHandler := NewOTPHandler(otpSrv)
 
-	authGRPC.RegisterOTPServiceServer(s, NewOTPHandler(otpService))
+	consumer := baseServices.NewKafkaConsumer()
+
+	consumer.Consume(event.SendOTPRequestTopic, event.HandleSendOTPGroup, otpHandler.HandleSendOTP)
 }
